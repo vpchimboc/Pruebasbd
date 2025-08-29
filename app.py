@@ -41,7 +41,9 @@ def exec_sql(sql: str, params: tuple = ()):
     conn.commit()
     return cur.lastrowid
 
-def exists_email(email, ignore_id: None) -> bool:
+from typing import Optional
+
+def exists_email(email: str, ignore_id: Optional[int] = None) -> bool:
     if ignore_id is None:
         df = query_df("SELECT id FROM postulantes WHERE email = ?", (email,))
     else:
